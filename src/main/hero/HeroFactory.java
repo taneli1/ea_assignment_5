@@ -9,7 +9,5 @@ public abstract class HeroFactory {
     public static void buildHero(String name, HeroClass heroClass) {
         int level = 1;
         HeroAttributeProvider provider = new HeroAttributeIndex();
-
-
     }
 }

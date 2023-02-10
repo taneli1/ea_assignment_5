@@ -29,6 +29,10 @@ public abstract class Hero {
         return this.level;
     }
 
+    public HeroClass getHeroClass() {
+        return this.heroClass;
+    }
+
     public int getDamage() {
         return 1;
     }

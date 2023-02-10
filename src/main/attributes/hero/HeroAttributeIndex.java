@@ -1,9 +1,7 @@
 package main.attributes.hero;
 
 import main.attributes.StatAttributes;
-import main.hero.Hero;
 import main.hero.HeroClass;
-import org.w3c.dom.ranges.Range;
 
 
 public class HeroAttributeIndex implements HeroAttributeProvider {

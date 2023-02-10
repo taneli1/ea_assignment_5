@@ -1,6 +1,7 @@
 package main.attributes.hero;
 
 
+import main.attributes.StatAttributeHolder;
 import main.attributes.StatAttributes;
 import main.hero.Hero;
 
@@ -43,25 +44,25 @@ abstract class HeroClassAttributes implements StatAttributes {
     }
 }
 
-class MageAttributes extends HeroClassAttributes {
+final class MageAttributes extends HeroClassAttributes {
     public MageAttributes(int level) {
         super(level, 1, 1, 8, 1, 1, 5);
     }
 }
 
-class RangerAttributes extends HeroClassAttributes {
+final class RangerAttributes extends HeroClassAttributes {
     public RangerAttributes(int level) {
         super(level, 1, 7, 1, 1, 5, 1);
     }
 }
 
-class RogueAttributes extends HeroClassAttributes {
+final class RogueAttributes extends HeroClassAttributes {
     public RogueAttributes(int level) {
         super(level, 2, 6, 1, 1, 4, 1);
     }
 }
 
-class WarriorAttributes extends HeroClassAttributes {
+final class WarriorAttributes extends HeroClassAttributes {
     public WarriorAttributes(int level) {
         super(level, 5, 2, 1, 3, 2, 1);
     }
