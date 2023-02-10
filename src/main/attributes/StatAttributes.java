@@ -20,4 +20,10 @@ public interface StatAttributes {
                 this.getInt() + attr.getInt()
         );
     }
+
+    default String print() {
+        return "Str: " + getStr() + "\n" +
+                "Dex: " + getDex() + "\n" +
+                "Int: " + getInt() + "\n";
+    }
 }

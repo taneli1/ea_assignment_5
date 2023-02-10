@@ -1,5 +1,6 @@
 package main.equipment.manager;
 
+import main.attributes.StatAttributeHolder;
 import main.attributes.StatAttributes;
 import main.equipment.exceptions.InvalidArmorException;
 import main.equipment.exceptions.InvalidItemException;
@@ -8,6 +9,7 @@ import main.equipment.items.Item;
 import main.equipment.items.ItemSlot;
 import main.equipment.items.armor.Armor;
 import main.equipment.items.armor.ArmorType;
+import main.equipment.items.weapon.Fists;
 import main.equipment.items.weapon.Weapon;
 import main.equipment.items.weapon.WeaponType;
 import main.hero.Hero;
@@ -66,13 +68,19 @@ public class HeroEquipmentManager implements EquipmentManager {
 
 
     @Override
-    public StatAttributes getTotalArmorAttributes() {
+    public StatAttributes getEquippedArmorAttributes() {
         checkIsBound();
 
         return equipped.entrySet().stream()
                 .filter(it -> armorSlots.contains(it.getKey()))     // Armor instances
                 .filter(it -> it.getValue() != null)                // Only slots with items
                 .map(it -> ((Armor) it.getValue()).armorAttribute)  // To list of StatAttributes
-                .reduce(StatAttributes::combine).orElseThrow();     // TODO this
+                .reduce(new StatAttributeHolder(), StatAttributes::combine);
+    }
+
+    @Override
+    public Weapon getEquippedWeapon() {
+        Item weapon = equipped.get(ItemSlot.Weapon);
+        return weapon != null ? (Weapon) weapon : new Fists();
     }
 }

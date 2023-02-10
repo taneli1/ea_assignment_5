@@ -1,5 +1,5 @@
 package main.hero;
 
 public enum HeroClass {
-    Mage, Ranger, Rogue, Warrior
+    MAGE, RANGER, ROGUE, WARRIOR
 }

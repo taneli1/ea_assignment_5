@@ -9,10 +9,10 @@ public class HeroAttributeIndex implements HeroAttributeProvider {
     @Override
     public StatAttributes resolveLevelAttributes(HeroClass heroClass, int level) {
         return switch (heroClass) {
-            case Mage -> new MageAttributes(level);
-            case Ranger -> new RangerAttributes(level);
-            case Rogue -> new RogueAttributes(level);
-            case Warrior -> new WarriorAttributes(level);
+            case MAGE -> new MageAttributes(level);
+            case RANGER -> new RangerAttributes(level);
+            case ROGUE -> new RogueAttributes(level);
+            case WARRIOR -> new WarriorAttributes(level);
         };
     }
 }

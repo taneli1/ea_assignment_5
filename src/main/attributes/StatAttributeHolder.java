@@ -14,6 +14,15 @@ public class StatAttributeHolder implements StatAttributes {
         this.intel = intel;
     }
 
+    /**
+     * Instance with all values set to 0.
+     */
+    public StatAttributeHolder() {
+        this.str = 0;
+        this.dex = 0;
+        this.intel = 0;
+    }
+
     @Override
     public int getStr() {
         return str;

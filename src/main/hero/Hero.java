@@ -6,7 +6,7 @@ import main.equipment.exceptions.InvalidItemException;
 import main.equipment.items.Item;
 import main.equipment.manager.EquipmentManager;
 
-public abstract class Hero {
+public class Hero {
     private final String name;
     private final HeroClass heroClass;
     private final HeroAttributeProvider provider;
@@ -34,21 +34,22 @@ public abstract class Hero {
     }
 
     public int getDamage() {
-        return 1;
+        return equipmentManager.getEquippedWeapon().weaponDamage;
     }
 
     public StatAttributes getTotalAttributes() {
-        return this.levelAttributes;
+        return this.levelAttributes.combine(equipmentManager.getEquippedArmorAttributes());
     }
 
     public String display() {
+        StatAttributes total = getTotalAttributes();
         return "Name: " + name + "\n" +
                 "Class: " + heroClass + "\n" +
                 "Level: " + level + "\n" +
-                "Total Strength: " + levelAttributes.getStr() + "\n" +
-                "Total Dexterity: " + levelAttributes.getDex() + "\n" +
-                "Total Intelligence: " + levelAttributes.getInt() + "\n" +
-                "Damage: " + 1 + "\n";
+                "Total Strength: " + total.getStr() + "\n" +
+                "Total Dexterity: " + total.getDex() + "\n" +
+                "Total Intelligence: " + total.getInt() + "\n" +
+                "Damage: " + getDamage() + "\n";
     }
 
     public void equip(Item item) throws InvalidItemException {

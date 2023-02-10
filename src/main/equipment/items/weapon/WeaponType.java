@@ -1,5 +1,5 @@
 package main.equipment.items.weapon;
 
 public enum WeaponType {
-    Axe, Bow, Dagger, Hammer, Staff, Sword, Wand
+    AXE, BOW, DAGGER, HAMMER, STAFF, SWORD, WAND, FISTS
 }

@@ -14,18 +14,18 @@ import static main.equipment.items.weapon.WeaponType.*;
 public class HeroEquipmentIndex {
     public static List<ArmorType> validArmorTypes(HeroClass forClass) {
         return switch (forClass) {
-            case Mage -> List.of(Cloth);
-            case Ranger, Rogue -> List.of(Leather, Mail);
-            case Warrior -> List.of(Mail, Plate);
+            case MAGE -> List.of(Cloth);
+            case RANGER, ROGUE -> List.of(Leather, Mail);
+            case WARRIOR -> List.of(Mail, Plate);
         };
     }
 
     public static List<WeaponType> validWeaponTypes(HeroClass forClass) {
         return switch (forClass) {
-            case Mage -> List.of(Staff, Wand);
-            case Ranger -> List.of(Bow);
-            case Rogue -> List.of(Dagger, Sword);
-            case Warrior -> List.of(Axe, Hammer, Sword);
+            case MAGE -> List.of(STAFF, WAND);
+            case RANGER -> List.of(BOW);
+            case ROGUE -> List.of(DAGGER, SWORD);
+            case WARRIOR -> List.of(AXE, HAMMER, SWORD);
         };
     }
 }
