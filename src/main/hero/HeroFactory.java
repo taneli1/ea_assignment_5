@@ -11,7 +11,7 @@ public abstract class HeroFactory {
         HeroAttributeProvider provider = new HeroAttributeIndex();
         HeroEquipmentManager manager = new HeroEquipmentManager();
         HeroDamageCalculator calc = new HeroDamageCalculator();
-        Hero hero = new Hero(name, 20, heroClass, manager, provider, calc);
+        Hero hero = new Hero(name, 1, heroClass, manager, provider, calc);
         // Better way?
         manager.bind(hero);
         return hero;
