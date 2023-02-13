@@ -1,7 +1,7 @@
 package main.attributes;
 
 /**
- * Simple implementation for StatAttributes.
+ * Common implementation for StatAttributes.
  */
 public class StatAttributeHolder implements StatAttributes {
     private final int str;
