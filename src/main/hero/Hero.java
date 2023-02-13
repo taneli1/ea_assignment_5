@@ -2,6 +2,7 @@ package main.hero;
 
 import main.attributes.StatAttributes;
 import main.attributes.hero.HeroAttributeProvider;
+import main.combat.damage.DamageCalculator;
 import main.equipment.exceptions.InvalidItemException;
 import main.equipment.items.Item;
 import main.equipment.manager.EquipmentManager;
@@ -10,17 +11,24 @@ public class Hero {
     private final String name;
     private final HeroClass heroClass;
     private final HeroAttributeProvider provider;
+    private final DamageCalculator<Hero> damageCalc;
     private final EquipmentManager equipmentManager;
-
     private int level;
     private StatAttributes levelAttributes;
 
-    public Hero(String name, int level, HeroClass heroClass, EquipmentManager equipmentManager, HeroAttributeProvider provider) {
+    public Hero(
+            String name,
+            int level,
+            HeroClass heroClass,
+            EquipmentManager equipmentManager,
+            HeroAttributeProvider provider,
+            DamageCalculator<Hero> damageCalc
+    ) {
         this.name = name;
         this.heroClass = heroClass;
         this.provider = provider;
         this.equipmentManager = equipmentManager;
-
+        this.damageCalc = damageCalc;
         this.level = level;
         this.levelAttributes = provider.resolveLevelAttributes(heroClass, level);
     }
@@ -34,7 +42,7 @@ public class Hero {
     }
 
     public int getDamage() {
-        return equipmentManager.getEquippedWeapon().weaponDamage;
+        return damageCalc.resolveDamage(this, equipmentManager.getEquippedWeapon());
     }
 
     public StatAttributes getTotalAttributes() {
