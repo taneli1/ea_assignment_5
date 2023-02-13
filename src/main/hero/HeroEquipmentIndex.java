@@ -14,9 +14,9 @@ import static main.equipment.items.weapon.WeaponType.*;
 public class HeroEquipmentIndex {
     public static List<ArmorType> validArmorTypes(HeroClass forClass) {
         return switch (forClass) {
-            case MAGE -> List.of(Cloth);
-            case RANGER, ROGUE -> List.of(Leather, Mail);
-            case WARRIOR -> List.of(Mail, Plate);
+            case MAGE -> List.of(CLOTH);
+            case RANGER, ROGUE -> List.of(LEATHER, MAIL);
+            case WARRIOR -> List.of(MAIL, PLATE);
         };
     }
 

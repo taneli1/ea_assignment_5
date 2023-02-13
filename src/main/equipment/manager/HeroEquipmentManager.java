@@ -24,7 +24,7 @@ import java.util.Map;
  * Manages the equipment of a hero.
  */
 public class HeroEquipmentManager implements EquipmentManager {
-    private static final List<ItemSlot> armorSlots = List.of(ItemSlot.Body, ItemSlot.Head, ItemSlot.Legs);
+    private static final List<ItemSlot> armorSlots = List.of(ItemSlot.BODY, ItemSlot.HEAD, ItemSlot.LEGS);
     private final Map<ItemSlot, Item> equipped = new HashMap<ItemSlot, Item>();
 
     private Hero hero;
@@ -80,7 +80,7 @@ public class HeroEquipmentManager implements EquipmentManager {
 
     @Override
     public Weapon getEquippedWeapon() {
-        Item weapon = equipped.get(ItemSlot.Weapon);
+        Item weapon = equipped.get(ItemSlot.WEAPON);
         return weapon != null ? (Weapon) weapon : new Fists();
     }
 }

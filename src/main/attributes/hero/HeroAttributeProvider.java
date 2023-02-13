@@ -4,7 +4,7 @@ import main.attributes.StatAttributes;
 import main.hero.HeroClass;
 
 /**
- * Able to provide StatAttributes for all Heroes of different levels.
+ * Provides StatAttributes for all Heroes of different levels.
  */
 public interface HeroAttributeProvider {
     /**

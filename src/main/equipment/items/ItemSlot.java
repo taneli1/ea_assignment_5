@@ -1,5 +1,5 @@
 package main.equipment.items;
 
 public enum ItemSlot {
-    Weapon, Head, Body, Legs
+    WEAPON, HEAD, BODY, LEGS
 }
