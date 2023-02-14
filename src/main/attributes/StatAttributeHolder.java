@@ -1,7 +1,7 @@
 package main.attributes;
 
 /**
- * Common implementation for StatAttributes.
+ * Common implementation for StatAttributes (eg. used for Armor).
  */
 public class StatAttributeHolder implements StatAttributes {
     private final int str;

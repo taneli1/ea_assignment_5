@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Manages the equipment of a hero.
+ * Manages the equipment of an ItemUser.
  */
-public class HeroEquipmentManager implements EquipmentManager {
+public class ItemUserEquipmentManager implements EquipmentManager {
     private static final List<ItemSlot> armorSlots = List.of(ItemSlot.BODY, ItemSlot.HEAD, ItemSlot.LEGS);
     private final Map<ItemSlot, Item> equipped = new HashMap<ItemSlot, Item>();
 

@@ -7,7 +7,6 @@ import main.equipment.ItemUser;
 import main.equipment.exceptions.InvalidItemException;
 import main.equipment.items.Item;
 import main.equipment.manager.EquipmentManager;
-import main.equipment.manager.HeroEquipmentManager;
 
 public class Hero implements ItemUser {
     private final String name;
@@ -73,6 +72,7 @@ public class Hero implements ItemUser {
 
     @Override
     public boolean isEquipable(Item item) {
+        // TODO
         return HeroEquipmentIndex.canEquip(heroClass, item);
     }
 }

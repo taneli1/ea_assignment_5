@@ -9,7 +9,7 @@ import main.equipment.items.ItemSlot;
 import main.equipment.items.armor.Armor;
 import main.equipment.items.armor.ArmorType;
 import main.equipment.items.weapon.Weapon;
-import main.equipment.manager.HeroEquipmentManager;
+import main.equipment.manager.ItemUserEquipmentManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ class HeroTest {
 
     @BeforeEach
     void setup() {
-        HeroEquipmentManager manager = new HeroEquipmentManager();
+        ItemUserEquipmentManager manager = new ItemUserEquipmentManager();
 
         // Returns the hero level for each attribute
         HeroAttributeProvider provider = new HeroAttributeProvider() {
