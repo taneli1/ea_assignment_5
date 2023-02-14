@@ -54,7 +54,6 @@ class HeroTest {
         };
 
         hero = new Hero("Test", 1, HeroClass.RANGER, manager, provider, calc);
-        manager.bind(hero);
     }
 
     @Test

@@ -2,19 +2,15 @@ package main.equipment.manager;
 
 import main.attributes.StatAttributeHolder;
 import main.attributes.StatAttributes;
+import main.equipment.ItemUser;
 import main.equipment.exceptions.InvalidArmorException;
 import main.equipment.exceptions.InvalidItemException;
 import main.equipment.exceptions.InvalidWeaponException;
 import main.equipment.items.Item;
 import main.equipment.items.ItemSlot;
 import main.equipment.items.armor.Armor;
-import main.equipment.items.armor.ArmorType;
 import main.equipment.items.weapon.Fists;
 import main.equipment.items.weapon.Weapon;
-import main.equipment.items.weapon.WeaponType;
-import main.hero.Hero;
-import main.hero.HeroClass;
-import main.hero.HeroEquipmentIndex;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,50 +23,33 @@ public class HeroEquipmentManager implements EquipmentManager {
     private static final List<ItemSlot> armorSlots = List.of(ItemSlot.BODY, ItemSlot.HEAD, ItemSlot.LEGS);
     private final Map<ItemSlot, Item> equipped = new HashMap<ItemSlot, Item>();
 
-    private Hero hero;
-
-    public void bind(Hero hero) {
-        this.hero = hero;
-    }
-
     @Override
-    public void equip(Item item) throws InvalidItemException {
-        checkIsBound();
-        checkRequirements(item);
+    public void equip(ItemUser user, Item item) throws InvalidItemException {
+        checkRequirements(user, item);
         equipped.put(item.slot, item);
     }
 
-    private void checkIsBound() {
-        if (this.hero == null) {
-            throw new RuntimeException("HeroEquipmentManager requires an instance of a Hero to be bound.");
-        }
-    }
-
-    private void checkRequirements(Item item) throws InvalidItemException {
-        boolean levelOk = hero.getLevel() >= item.requiredLevel;
+    private void checkRequirements(ItemUser user, Item item) throws InvalidItemException {
+        boolean levelOk = user.getLevel() >= item.requiredLevel;
         if (!levelOk) {
-            throw new InvalidItemException("You do not meet the required level (%d) to equip this item.".formatted(item.requiredLevel));
+            throw new InvalidItemException("The user does not meet the required level (%d) to equip this item.".formatted(item.requiredLevel));
         }
 
-        HeroClass hc = hero.getHeroClass();
+        boolean canEquip = user.isEquipable(item);
+        if (canEquip) return;
+
         if (item instanceof Armor) {
-            ArmorType type = ((Armor) item).armorType;
-            boolean canEqp = HeroEquipmentIndex.validArmorTypes(hc).contains(type);
-            if (!canEqp) throw new InvalidArmorException();
+            throw new InvalidArmorException();
         }
-
         if (item instanceof Weapon) {
-            WeaponType type = ((Weapon) item).weaponType;
-            boolean canEqp = HeroEquipmentIndex.validWeaponTypes(hc).contains(type);
-            if (!canEqp) throw new InvalidWeaponException();
+            throw new InvalidWeaponException();
         }
-    }
 
+        throw new InvalidItemException("This item cannot be equipped by the user.");
+    }
 
     @Override
     public StatAttributes getEquippedArmorAttributes() {
-        checkIsBound();
-
         return equipped.entrySet().stream()
                 .filter(it -> armorSlots.contains(it.getKey()))     // Armor instances
                 .filter(it -> it.getValue() != null)                // Only slots with items

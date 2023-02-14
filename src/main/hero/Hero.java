@@ -3,11 +3,13 @@ package main.hero;
 import main.attributes.StatAttributes;
 import main.attributes.hero.HeroAttributeProvider;
 import main.combat.damage.DamageCalculator;
+import main.equipment.ItemUser;
 import main.equipment.exceptions.InvalidItemException;
 import main.equipment.items.Item;
 import main.equipment.manager.EquipmentManager;
+import main.equipment.manager.HeroEquipmentManager;
 
-public class Hero {
+public class Hero implements ItemUser {
     private final String name;
     private final HeroClass heroClass;
     private final HeroAttributeProvider provider;
@@ -61,11 +63,16 @@ public class Hero {
     }
 
     public void equip(Item item) throws InvalidItemException {
-        equipmentManager.equip(item);
+        equipmentManager.equip(this, item);
     }
 
     public void levelUp() {
         this.level = this.level + 1;
         this.levelAttributes = provider.resolveLevelAttributes(heroClass, this.level);
+    }
+
+    @Override
+    public boolean isEquipable(Item item) {
+        return HeroEquipmentIndex.canEquip(heroClass, item);
     }
 }
