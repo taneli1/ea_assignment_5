@@ -7,8 +7,9 @@ import main.equipment.ItemUser;
 import main.equipment.exceptions.InvalidItemException;
 import main.equipment.items.Item;
 import main.equipment.manager.EquipmentManager;
+import main.game.Player;
 
-public class Hero implements ItemUser {
+public class Hero implements ItemUser, Player {
     private final String name;
     private final HeroClass heroClass;
     private final HeroAttributeProvider provider;
@@ -58,7 +59,12 @@ public class Hero implements ItemUser {
                 "Total Strength: " + total.getStr() + "\n" +
                 "Total Dexterity: " + total.getDex() + "\n" +
                 "Total Intelligence: " + total.getInt() + "\n" +
-                "Damage: " + getDamage() + "\n";
+                "Damage: " + getDamage();
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     public void equip(Item item) throws InvalidItemException {
