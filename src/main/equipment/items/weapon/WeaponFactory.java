@@ -6,6 +6,6 @@ public class WeaponFactory {
     }
 
     public static Weapon testAxe() {
-        return new Weapon("Axe", 1, WeaponType.AXE, 1);
+        return new Weapon("Axe", 1, WeaponType.AXE, 100);
     }
 }

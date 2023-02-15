@@ -60,7 +60,7 @@ class HeroIntegrationTest {
     }
 
     @Test
-    void equippedItems_areTakenInto_calculations() throws Exception {
+    void equippedItems_areUsedInTotalAttributes() throws Exception {
         Armor head = ArmorFactory.testHead();
         Armor legs = ArmorFactory.testLegs();
         Armor chest = ArmorFactory.testChest();
@@ -70,6 +70,7 @@ class HeroIntegrationTest {
 
         StatAttributes att = hero.getTotalAttributes();
 
+        // Warrior lvl 1 + 3 x 1 for each from the test armors
         assertEquals(8, att.getStr());
         assertEquals(5, att.getDex());
         assertEquals(4, att.getInt());
@@ -87,8 +88,19 @@ class HeroIntegrationTest {
 
         StatAttributes att = hero.getTotalAttributes();
 
+        // Warrior lvl 1 + one testHead()
         assertEquals(6, att.getStr());
         assertEquals(3, att.getDex());
         assertEquals(2, att.getInt());
+    }
+
+    @Test
+    void equippedItems_affectDamage() {
+        Armor head = ArmorFactory.testHead();
+        Armor legs = ArmorFactory.testLegs();
+        Armor chest = ArmorFactory.testChest();
+        Weapon axe = WeaponFactory.testAxe(); // 100 dmg
+
+        // TODO
     }
 }
