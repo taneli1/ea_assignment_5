@@ -8,7 +8,6 @@ import main.game.events.GameAction;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Set;
 
 public class ConsoleApp implements GameEventListener {
     private final GameController controller;
@@ -23,13 +22,13 @@ public class ConsoleApp implements GameEventListener {
     }
 
     @Override
-    public void notify(GameEvent event) {
+    public void onGameEvent(GameEvent event) {
         System.out.println();
         System.out.println(event.display());
     }
 
     @Override
-    public void requestAction(List<GameAction> options) {
+    public void onUserActionRequested(List<GameAction> options) {
         for (int i = 0; i < options.size(); i++) {
             System.out.println(i + 1 + ") " + options.get(i).display());
         }
@@ -37,9 +36,10 @@ public class ConsoleApp implements GameEventListener {
         try {
             String input = reader.readLine();
             int index = Integer.parseInt(input.trim()) - 1;
-            controller.queuePlayerAction(options.get(index));
+            controller.playerAction(options.get(index));
         } catch (Exception e) {
             System.out.println("ERROR: " + e);
+            e.printStackTrace();
         }
     }
 }
