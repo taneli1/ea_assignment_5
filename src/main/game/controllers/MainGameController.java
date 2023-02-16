@@ -1,32 +1,26 @@
 package main.game.controllers;
 
 import main.game.events.GameAction;
-import main.game.events.GameEvent;
-import main.game.sequences.GameSeqHandler;
-import main.game.sequences.SequenceListener;
+import main.game.sequence.GameSequence;
+import main.game.sequence.GameSequenceProvider;
 
-import java.util.List;
-
-public class MainGameController extends GameController implements SequenceListener {
-    GameSeqHandler h = new GameSeqHandler(this);
+public class MainGameController extends GameController {
+    private final GameSequenceProvider provider = new GameSequenceProvider();
 
     @Override
     public void start() {
-        h.start();
+        loop();
+    }
+
+    private void loop() {
+        GameSequence seq = provider.next();
+        notifyGameControllerListeners(seq);
+        requestUserAction(seq.getOptions());
     }
 
     @Override
     public void playerAction(GameAction gameAction) {
-        h.userAction(gameAction);
-    }
-
-    @Override
-    public void onSequenceEvent(GameEvent ev) {
-        notifyGameControllerListeners(ev);
-    }
-
-    @Override
-    public void onSequenceRequestAction(List<GameAction> options) {
-        requestUserAction(options);
+        notifyGameControllerListeners(provider.current().executeAction(gameAction));
+        loop();
     }
 }
