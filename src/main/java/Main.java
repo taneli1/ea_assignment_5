@@ -1,3 +1,5 @@
+package main.java;
+
 import main.app.ConsoleApp;
 import main.game.controllers.MainGameController;
 import main.hero.Hero;
