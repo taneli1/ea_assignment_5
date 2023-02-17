@@ -6,7 +6,11 @@ import main.equipment.items.ItemSlot;
 public class ArmorFactory {
 
     public static Armor testChest() {
-        return new Armor("Chestpiece", 1, ItemSlot.BODY, ArmorType.PLATE, new StatAttributeHolder(1, 1, 1));
+        return ArmorFactory.testChest(1);
+    }
+
+    public static Armor testChest(int withAttributes) {
+        return new Armor("Chestpiece", 1, ItemSlot.BODY, ArmorType.PLATE, new StatAttributeHolder(withAttributes, withAttributes, withAttributes));
     }
 
     public static Armor testLegs() {

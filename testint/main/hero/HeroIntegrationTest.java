@@ -95,12 +95,17 @@ class HeroIntegrationTest {
     }
 
     @Test
-    void equippedItems_affectDamage() {
-        Armor head = ArmorFactory.testHead();
-        Armor legs = ArmorFactory.testLegs();
-        Armor chest = ArmorFactory.testChest();
+    void equippedWeapon_affectsDamage() throws InvalidItemException {
         Weapon axe = WeaponFactory.testAxe(); // 100 dmg
+        hero.equip(axe);
+        assertEquals(100, hero.getDamage());
+    }
 
-        // TODO
+    @Test
+    void equippedArmor_affectsDamage() throws InvalidItemException {
+        Armor armor = ArmorFactory.testChest(100);
+        hero.equip(armor);
+        // weapon damage (1) + weaponDamage * 1.0 (105% -> from total attributes, rounded down)
+        assertEquals(2, hero.getDamage());
     }
 }
